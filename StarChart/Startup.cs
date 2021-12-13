@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using StarChart.Data;
 
@@ -13,7 +14,10 @@ namespace StarChart
         {
             services.AddMvc();
 
-            services.AddDbContext<ApplicationDbContext>();
+            services.AddDbContext<ApplicationDbContext>(options =>
+            {
+                options.UseInMemoryDatabase("StarChart");
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
